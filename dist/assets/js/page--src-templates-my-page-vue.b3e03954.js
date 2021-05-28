@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{kboC:function(e,t,n){"use strict";n.r(t);var s={name:"MyPage"},a=n("KHd+"),i=Object(a.a)(s,(function(){var e=this.$createElement;this._self._c;return this._m(0)}),[function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("h1",[this._v("MyPage")])])}],!1,null,"43e3b24a",null);t.default=i.exports}}]);
