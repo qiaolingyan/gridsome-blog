@@ -2,7 +2,8 @@
   "apps": [
     {
       "name": "blog",
-      "script": "dist/index.html"
+      "script": "dist/index.html",
+      "port": "8080"
     }
   ]
 }
