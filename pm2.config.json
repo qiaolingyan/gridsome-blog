@@ -2,8 +2,7 @@
   "apps": [
     {
       "name": "blog",
-      "script": "npm",
-      "args": "start"
+      "script": "dist/index.html"
     }
   ]
 }

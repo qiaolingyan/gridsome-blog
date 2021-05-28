@@ -56,5 +56,4 @@ jobs:
           cd /root/gridsome-blog
           wget https://github.com/qiaolingyan/gridsome-blog/releases/latest/download/release.tgz -O release.tgz
           tar zxvf release.tgz
-          npm install --production
           pm2 reload pm2.config.json
