@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "blog",
-      "script": "server.js"
+      "script": "node server.js"
     }
   ]
 }
