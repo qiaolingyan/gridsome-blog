@@ -1,59 +1,16 @@
 <template>
   <Layout>
-    <!-- Page Header -->
-    <header class="masthead" :style="{backgroundImage:`url(${this.GRIDSOME_API_URL}${general.cover.url})`}">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h1>{{ general.title }}</h1>
-              <span class="subheading">{{ general.subtitle }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview" v-for="edge in $page.posts.edges" :key="edge.node.id">
-            <g-link :to="'/post/'+edge.node.id">
-              <h2 class="post-title">
-                {{ edge.node.title }}
-              </h2>
-              <!--<h3 class="post-subtitle">-->
-              <!--Problems look mighty small from 150 miles up-->
-              <!--</h3>-->
-            </g-link>
-            <p>
-              {{ edge.node.content }}
-            </p>
-            <p class="post-meta">
-              <!--Posted by-->
-              <!--<a href="#">{{ edge.node.created_at }}</a>-->
-              {{ edge.node.created_at }}
-            </p>
-            <p>
-              <span v-for="tag in edge.node.tags" :key="tag.id">
-                <g-link :to="'/tag/'+tag.id">{{ tag.title }}</g-link>
-                &nbsp;&nbsp;
-              </span>
-
-            </p>
-            <hr>
-          </div>
-
-          <!-- Pager -->
-          <!--<div class="clearfix">-->
-          <!--<a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>-->
-          <!--</div>-->
-          <Pager :info="$page.posts.pageInfo" />
-        </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <input class="search-input" placeholder="请输入关键字" v-model="searchKey" clearable></input>
+        <button class="search-btn" @click="search" icon="el-icon-search" style="margin-left: 10px" circle plain>√</button>
       </div>
     </div>
+      <!-- Main Content -->
+      <File v-for="edge in posts" :key="edge.node.id" :post="edge.node">
+      </File>
+      
+      <Pager class="pager-nav" :info="$page.posts.pageInfo" />
 
   </Layout>
 </template>
@@ -68,10 +25,15 @@
           cover{
             url
           }
+          profile{
+            url
+          }
+          github_name
+          github_url
         }
       }
     }
-    posts: allStrapiPost(perPage: 2, page: $page) @paginate{
+    posts: allStrapiPost(perPage: 10, page: $page) @paginate{
       pageInfo {
         totalPages
         currentPage
@@ -81,6 +43,7 @@
           id
           title
           content
+          description
           created_at
           tags {
             id
@@ -98,9 +61,32 @@ export default {
   components: {
     Pager
   },
+  data(){
+    return {
+      searchKey:'',
+      posts:[]
+    }
+  },
   computed: {
     general() {
       return this.$page.general.edges[0].node
+    }
+  },
+  mounted(){
+    this.posts = this.$page.posts.edges
+  },
+  watch:{
+    '$page.posts.edges':{
+      handler(){
+        this.posts = this.$page.posts.edges
+      }
+    }
+  },
+  methods:{
+    search(){
+      this.posts = this.$page.posts.edges.filter((edge) => {
+        return edge.node.title.indexOf(this.searchKey) !== -1
+      })
     }
   }
 }

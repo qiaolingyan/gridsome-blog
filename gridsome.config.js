@@ -35,7 +35,12 @@ module.exports = {
   templates: {
     StrapiPost: [{
       path: '/post/:id',
+      name:'post',
       component: './src/templates/Post.vue'
+    },{
+      path: '/edit/:id',
+      name:'edit',
+      component: './src/templates/Edit.vue'
     }],
     StrapiTag: [{
       path: '/tag/:id',

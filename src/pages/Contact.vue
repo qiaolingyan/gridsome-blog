@@ -1,23 +1,7 @@
 <template>
   <Layout>
-    <!-- Page Header-->
-    <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
-              <h1>Contact Me</h1>
-              <span class="subheading">Have questions? I have answers.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
     <!-- Main Content-->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="post-wrap">
           <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
           <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work.-->
           <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address!-->
@@ -55,14 +39,33 @@
             <div id="success"></div>
             <button class="btn btn-primary" id="sendMessageButton" type="submit" @click.prevent="onSubmit">Send</button>
           </form>
-        </div>
       </div>
-    </div>
   </Layout>
 </template>
+<page-query>
+  query{
+    general: allStrapiGeneral {
+      edges{
+        node{
+          id
+          title
+          subtitle
+          cover{
+            url
+          }
+          profile{
+          url
+          }
+          github_name
+          github_url
+        }
+      }
+    }
+  }
+</page-query>
 
 <script>
-  import axios from 'axios'
+  import {contacts} from '../api/contact'
   export default {
     name: "Contact",
     data(){
@@ -78,11 +81,7 @@
     methods:{
       async onSubmit(){
         try {
-          await axios({
-            method:'POST',
-            url:'http://localhost:1337/contacts',
-            data:this.form
-          })
+          await contacts(this.form)
           window.alert('提交成功')
         }catch(e){
           window.alert(e)

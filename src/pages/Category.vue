@@ -1,16 +1,17 @@
 <template>
   <Layout>
-    
-    <!-- Main Content -->
-      <File v-for="post in $page.tag.posts" :key="post.id" :post="post">
-      </File>
-    
-      <!--<Pager :info="$page.tag.posts.pageInfo" />-->
-  
+    <ul class="list-group post-wrap">
+      <li class="list-group-item category-list-item"
+          v-for="edge in $page.tags.edges"
+          :key="edge.node.id"
+      >
+        <g-link :to="'/tag/'+edge.node.id">{{ edge.node.title }}</g-link>
+      </li>
+    </ul>
   </Layout>
 </template>
 <page-query>
-  query ($id: ID){
+  query{
     general: allStrapiGeneral {
       edges{
         node{
@@ -21,29 +22,26 @@
             url
           }
           profile{
-          url
+            url
           }
           github_name
           github_url
         }
       }
     }
-    tag: strapiTag(id:$id){
-      id
-      title
-      posts{
-        id
-        title
-        content
-        description
-        created_at
+    tags:allStrapiTag{
+      edges{
+        node{
+          title
+          id
+        }
       }
     }
   }
 </page-query>
 <script>
   export default {
-    name: "Tag"
+    name: "Category"
   }
 </script>
 
