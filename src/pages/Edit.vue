@@ -86,9 +86,9 @@
       async onSubmit() {
         try{
           const { data } = await post(this.article)
-          window.alert('创建成功')
+          console.log('创建成功')
         }catch (e) {
-          window.alert('创建失败')
+          console.log('创建失败')
         }
        
       }

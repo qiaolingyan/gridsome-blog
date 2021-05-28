@@ -91,9 +91,9 @@
       async onSubmit() {
         try {
           const { data } = await updatePost({data:this.article,id:this.$page.post.id})
-          window.alert('修改成功')
+          console.log('修改成功')
         }catch (e) {
-          window.alert('修改失败')
+          console.log('修改失败')
         }
         
       }

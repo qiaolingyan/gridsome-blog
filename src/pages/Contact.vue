@@ -82,9 +82,9 @@
       async onSubmit(){
         try {
           await contacts(this.form)
-          window.alert('提交成功')
+          console.log('提交成功')
         }catch(e){
-          window.alert(e)
+          console.log(e)
         }
       }
     }
