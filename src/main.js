@@ -4,9 +4,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
+
 import './assets/css/index.css'
 import './assets/fonts/iconfont.css'
-import './assets/fonts/iconfont.js'
+// import './assets/fonts/iconfont.js'
 
 import DefaultLayout from '~/layouts/Default.vue'
 import FileItem from '~/components/FileItem.vue'
