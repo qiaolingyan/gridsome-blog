@@ -10591,3 +10591,23 @@ header.masthead .post-heading .meta a {
   font-size: 14px;
   margin: 0 10px;
 }
+.login{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}

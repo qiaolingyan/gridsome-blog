@@ -86,9 +86,15 @@
       async onSubmit() {
         try{
           const { data } = await post(this.article)
-          console.log('创建成功')
+          window.alert('创建成功')
+          this.article = {
+            title: '',
+            description: '',
+            body: '',
+            tags: []
+          }
         }catch (e) {
-          console.log('创建失败')
+          window.alert('创建失败')
         }
        
       }

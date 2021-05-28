@@ -72,7 +72,8 @@
             <b>{{ general.github_name }}</b>
           </div>
           <div style="color:#606266;">
-            <g-link :to="general.github_url">外链</g-link>
+            <!--<g-link :to="general.github_url">外链</g-link>-->
+            <span @click="handleLogin">token</span>
             <br>
           </div>
         </div>
@@ -163,6 +164,8 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
+  import {login} from '../api/login'
   export default {
     data(){
       return {
@@ -194,6 +197,20 @@
       })
     },
     methods:{
+      async handleLogin(){
+        try {
+          let obj = {
+            "email": "1379282164@qq.com",
+            "password": "Qly19940116"
+          }
+          const { data } = await login(obj)
+          Cookies.set('token',data.data.token)
+          window.alert('获取 token 成功')
+        }catch (e) {
+          window.alert('获取 token 失败')
+        }
+        
+      },
       handleFullscreen(){
         let element = document.documentElement
         console.log(this.isFullscreen)
