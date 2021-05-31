@@ -1,5 +1,6 @@
 const fs = require('fs')
-const express = require('express')
+// const express = require('express')
+const express = require('/usr/local/bin/express')
 const app = express()
 
 const port = 8080
